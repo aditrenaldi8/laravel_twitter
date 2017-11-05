@@ -14,8 +14,9 @@ class CreateDataUsersTable extends Migration
     {
         Schema::create('data_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('bio');
-            $table->string('image');
+            $table->integer('user_id');
+            $table->string('bio')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

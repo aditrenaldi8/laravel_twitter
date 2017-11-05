@@ -11,10 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@index');
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+Route::post('/add', 'StatusController@add');
+
+Route::get('/profile', 'ProfileController@index');
+Route::get('/profile/edit/{id}','ProfileController@showEditForm');
+Route::post('/profile/edit/', 'ProfileController@edit');
+Route::get('/profile/upload/{id}', 'ProfileController@showUploadForm');
+Route::post('/profile/upload', 'ProfileController@upload');
+Route::get('/friends', 'FriendController@index');
