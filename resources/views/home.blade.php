@@ -24,8 +24,9 @@
             <div class="content">
                 @foreach($status as $data)
                     <div>
-                        {{ $data->user->name}}
+                        {{ $data->name}}
                         {{ $data->status }}
+                        {{ $data-> created_at }}
                     <div>
                 @endforeach
             </div>

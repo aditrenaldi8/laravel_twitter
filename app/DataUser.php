@@ -11,4 +11,15 @@ class DataUser extends Model
         return $this->belongsTo('App\User_');
     }
 
+    public function status()
+    {
+        return $this->hasMany('App\Status');
+    }
+
+    public function friend()
+    {
+        return $this->hasMany('App\Friend');
+    }
+
+
 }

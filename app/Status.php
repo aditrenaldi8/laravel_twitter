@@ -8,6 +8,6 @@ class Status extends Model
 {
     public function user()
     {
-        return $this->belongsTo('App\User_');
+        return $this->belongsTo('App\DataUser');
     }
 }

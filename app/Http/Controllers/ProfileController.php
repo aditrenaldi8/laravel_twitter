@@ -10,20 +10,22 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 use App\User_;
 use App\DataUser;
+use App\Friend;
 
 class ProfileController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
-        $checkUser = DB::select('select * from data_users WHERE user_id = ?', [Auth::user()->id]);
-
-        if(empty($checkUser)){
-            $new = new DataUser;
-            $new->user_id = Auth::user()->id;
-            $new->save();
-        }
-
-        $data = DataUser::find(Auth::user()->id)->get();
-        return view('profile',['data' => $data]);
+        $data = DataUser::where('user_id',Auth::user()->id)->get();
+        $following = Friend::where('follower_id', Auth::user()->id)->count();
+        $followers = Friend::where('user_id', Auth::user()->id)->count();
+    
+        return view('profile',['data' => $data, 'following'=> $following, 'followers'=> $followers]);
     }
 
     public function showEditForm($id){
@@ -84,7 +86,7 @@ class ProfileController extends Controller
             $image->move($destinationPath, $input['imagename']);
 
             $Data = DataUser::where('user_id', $request->id)->first();
-            $Data->image = $destinationPath.''.$input['imagename'];
+            $Data->image = '/assets/images/'.$input['imagename'];
             $Data->save();
 
             DB::commit();
