@@ -37,13 +37,11 @@ class FriendController extends Controller
     }
 
     public function people(){
-    	$data = DB::select('SELECT * from friends f
-                RIGHT JOIN data_users d ON f.follower_id = d.id
-                RIGHT JOIN users u ON d.user_id = u.id 
-       			WHERE f.follower_id not in (SELECT user_id FROM friends WHERE follower_id = ?)
-               	AND (f.follower_id <> ? OR u.id <> ? ) AND f.id IS NOT NULL 
-                GROUP BY f.follower_id
-                ORDER BY u.name ASC', [Auth::user()->id, Auth::user()->id, Auth::user()->id]);
+    	$data = DB::select('SELECT * FROM data_users d
+                JOIN users u ON d.user_id = u.id 
+       			WHERE d.user_id not in (SELECT user_id FROM friends WHERE follower_id = ?)
+                AND d.user_id <> ?
+                ORDER BY u.name ASC', [Auth::user()->id, Auth::user()->id]);
 
     	return view('people',['people'=>$data]); 
     }
@@ -67,6 +65,26 @@ class FriendController extends Controller
         }catch(\Exception $e){
             DB::rollBack();
             return redirect("/people");
+        }
+    }
+
+    public function delete(Request $request){
+
+        DB::beginTransaction();
+        try{
+            $this->validate($request, [
+                'id' => 'required',
+            ]);
+            
+            $data = Friend::where('user_id', $request->id)->first();
+            $data->delete();
+                
+            DB::commit();
+            return redirect("/following");
+
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect("/following");
         }
     }
 }

@@ -24,6 +24,7 @@ Route::post('/profile/edit/', 'ProfileController@edit');
 Route::get('/profile/upload/{id}', 'ProfileController@showUploadForm');
 Route::post('/profile/upload', 'ProfileController@upload');
 Route::get('/followers', 'FriendController@followers');
+Route::post('/following/delete', 'FriendController@delete');
 Route::get('/following', 'FriendController@following');
 Route::get('/people', 'FriendController@people');
 Route::post('/people/add', 'FriendController@addFriend');

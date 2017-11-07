@@ -1,0 +1,145 @@
+*{
+	border-radius: 0 !important;
+}
+
+.brand:hover{
+	text-decoration: none !important;
+	color: white;
+}
+
+.navbar-default{
+    background-color: #00CED1 !important;
+}
+
+.row{
+    margin-bottom: 5%;
+}
+
+.rounded{
+    border-radius:100em !important;
+    opacity:0.5;
+    border-top:2px solid #cf2031;
+    border-right:2px solid #0f7dc8;
+    border-bottom:2px solid #2eb31a;
+    border-left:2px solid #eab823;
+    width:50px;
+    height:50px;
+}
+
+.rounded-lg{
+    border-radius:100em !important;
+    opacity:0.5;
+    border-top:2px solid #cf2031;
+    border-right:2px solid #0f7dc8;
+    border-bottom:2px solid #2eb31a;
+    border-left:2px solid #eab823;
+    width:150px;
+    height:150px;
+}
+
+.status
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.status li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.status li.left .status-body
+{
+    margin-left: 60px;
+}
+
+.status li.right .status-body
+{
+    margin-right: 60px;
+    background-color: #F0FFF0;
+}
+
+
+.status li .status-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.profile{
+    border: 1px solid #C0C0C0;
+    margin : 5% 0 0 0;
+}
+
+.profile-left{
+    padding: 2% 0 5% 0;
+}
+
+.profile-left img{
+    margin : 2% 0 5% 0;
+}
+
+.profile-right{
+    padding: 2% 0 5% 0;
+}
+
+.edit{
+    margin: 3% 0 0 0;
+    width: 100%;
+}
+
+.profile-followers{
+    margin-bottom : 3%;
+    text-align: center;
+}
+
+.margin-sm{
+    margin-bottom: 3%;
+}
+
+.margin-md{
+    margin-bottom: 5%;
+}
+
+.bio{
+    text-align :center;
+    margin-bottom : 5%;
+}
+
+@media screen and (min-width:768px){
+    .navbar-brand-centered {
+        position: absolute;
+        left: 25%;
+        display: block;
+        width: 50%;
+        text-align: center;
+        background-color: #00CED1;
+    }
+    .navbar>.container .navbar-brand-centered, 
+    .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -80px;
+    }
+
+    .navbar-default .navbar-brand{
+        color:white !important;
+    }
+
+}
+
+@media screen and (min-width:991px){
+    .profile-followers{
+        text-align: left;
+    }
+
+    .bio{
+        text-align : left;
+    }
+
+    .edit{
+        margin: 25% 0 0 0;
+        width: 20%;
+    }
+}

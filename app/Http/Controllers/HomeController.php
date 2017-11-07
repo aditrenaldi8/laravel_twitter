@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use App\DataUser;
+
 class HomeController extends Controller
 {
     /**
@@ -35,9 +37,10 @@ class HomeController extends Controller
         }
 
         $data = DB::select(
-            'SELECT * FROM statuses s 
-                JOIN users u ON s.user_id = u.id 
-                WHERE s.user_id in (SELECT user_id FROM friends WHERE follower_id = ?) OR user_id = ? ORDER BY s.id DESC', [Auth::user()->id, Auth::user()->id]);
+            'SELECT u.id, u.name, u.email, s.status, s.created_at, d.image FROM statuses s 
+                JOIN users u ON s.user_id = u.id
+                JOIN data_users d ON d.user_id = u.id 
+                WHERE s.user_id in (SELECT user_id FROM friends WHERE follower_id = ?) OR s.user_id = ? ORDER BY s.id DESC', [Auth::user()->id, Auth::user()->id]);
 
         return view('home',['status' => $data]);
     }
